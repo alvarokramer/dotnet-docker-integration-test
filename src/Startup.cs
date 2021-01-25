@@ -32,8 +32,8 @@ namespace Timesheets
             });
             services.AddDbContext<TimeSheetContext>(options =>
                 options
-                    .UseInMemoryDatabase("TimeSheetContext")
-                    //.UseSqlServer(Configuration.GetConnectionString("TimeSheetContext"))
+                    //.UseInMemoryDatabase("TimeSheetContext")
+                    .UseSqlServer(Configuration.GetConnectionString("TimeSheetContext"))
                     .LogTo(Console.WriteLine));
 
             services.AddScoped<IValidator<TimeEntry>, TimeEntryValidator>();
@@ -48,8 +48,6 @@ namespace Timesheets
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Timesheets v1"));
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
