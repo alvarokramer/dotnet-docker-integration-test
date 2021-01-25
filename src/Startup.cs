@@ -32,7 +32,8 @@ namespace Timesheets
             });
             services.AddDbContext<TimeSheetContext>(options =>
                 options
-                    .UseSqlServer(Configuration.GetConnectionString("TimeSheetContext"))
+                    .UseInMemoryDatabase("TimeSheetContext")
+                    //.UseSqlServer(Configuration.GetConnectionString("TimeSheetContext"))
                     .LogTo(Console.WriteLine));
 
             services.AddScoped<IValidator<TimeEntry>, TimeEntryValidator>();
